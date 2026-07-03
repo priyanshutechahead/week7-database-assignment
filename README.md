@@ -4,55 +4,34 @@
 
 ## Design collections for: {USE inventory-DB}
 - Users
-'''({
-  "_id": ObjectId(""),
-  "name": "string",
-  "email": "string",
-  "number": "string",
-  "userid": "string"
-  "password": "string"
-  "shippingAddress": {
-    "street": "string",
-    "city": "string",
-    "zip": "string"
-  },
-  "createdAt": "date"
-});```
+<img width="871" height="749" alt="Screenshot 2026-07-03 at 4 49 42 PM" src="https://github.com/user-attachments/assets/48a92196-53b5-4797-9cd9-dca4d0746205" />
 
 - Products
-'''db.users.insertOne({
-  "_id": ObjectId(""),
-  "name": "string",
-  "description": "string",
-  "category": "string",
-  "brand": "string",
-  "price": "string",
-  "status": "string",
-  "createdAt": "DATE"
-});```
+db.createCollection("products", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "name", "sku", "price", "stock" ],
+         properties: {
+            name: { bsonType: "string" },
+            sku: { bsonType: "string" },
+            price: { bsonType: "double" },
+            stock: { bsonType: "int" }
+         }
+      }
+   }
+});
 
 - Orders
+<img width="1302" height="390" alt="Screenshot 2026-07-03 at 4 57 49 PM" src="https://github.com/user-attachments/assets/b85c05fb-271d-49a3-864d-964eaa2c1fbc" />
+
 
 ## Use embedded documents or references where appropriate.
 ### Write the following MongoDB queries:
 #### Insert a new user
 
 Insert a new product
-'''db.orders.insertOne({
-  "_id": Objectid,
-  "userId": Objectid,
-  "orderDate": "DATE",
-  "items": [
-    {
-      "productId": ObjectId,
-      "name": "mechanical keyboard", 
-      "price": 500,
-      "quantity": 2
-    }
-  ],
-  "totalAmount": 1000,
-  "status": "Processing"
-});```
+
 
 Create a new order
 
@@ -61,14 +40,17 @@ Find all orders for a user
 ''' db.users.find()'''
 ''' db.products.find()'''
 ''' db.orders.find()'''
+
 Update product stock
+<img width="1078" height="426" alt="Screenshot 2026-07-03 at 4 54 18 PM" src="https://github.com/user-attachments/assets/15a3cc5f-d4b3-43c3-ba0f-a2c55965eecf" />
 
 Delete an order
 
 ##Write one aggregation query to calculate:
 Total amount spent by each user or
 Total sales per product
-Deliverables
+
+### Deliverables
 MongoDB schema
 Sample documents
 CRUD queries
