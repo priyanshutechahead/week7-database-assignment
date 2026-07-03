@@ -49,10 +49,35 @@ Delete an order
 ##Write one aggregation query to calculate:
 Total amount spent by each user or
 Total sales per product
-
-### Deliverables
-MongoDB schema
-Sample documents
-CRUD queries
-One aggregation query
+```
+db.orders.aggregate([
+  {
+    "$group": {
+      "_id": "$userId",
+      "totalSpent": { "$sum": "$totalAmount" },
+      "orderCount": { "$sum": 1 }
+    }
+  },
+  {
+    "$lookup": {
+      "from": "users",
+      "localField": "_id",
+      "foreignField": "_id",
+      "as": "userDetails"
+    }
+  },
+  {
+    "$unwind": "$userDetails"
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "userId": "$_id",
+      "userName": "$userDetails.name",
+      "userEmail": "$userDetails.email",
+      "totalSpent": 1,
+      "orderCount": 1
+    }
+  }
+]);
 
