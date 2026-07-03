@@ -29,20 +29,22 @@ db.createCollection("products", {
 
 
 ## Use embedded documents or references where appropriate.
+- embedded - heavy read
+- references - heavy write
 ### Write the following MongoDB queries:
 #### Insert a new user
 ''' db.users.insertOne({
-  "name": "Jane Doe",
-  "email": "jane.doe@email.com",
-  "shippingAddress": { "street": "456 Oak St", "city": "Boston", "zip": "02108" },
+  "name": "priyanshu",
+  "email": "priyanshu@email.com",
+  "shippingAddress": { "street": "noida 76", "city": "noida", "zip": "206565" },
   "createdAt": new Date()
 }); '''
 
 Insert a new product
 ''' db.products.insertOne({
-  "name": "Wireless Mouse",
-  "description": "Ergonomic 2.4GHz wireless mouse",
-  "price": 29.99,
+  "name": "wireless Mouse",
+  "description": "Ergonomic 2GHz wireless mouse",
+  "price": 400,
   "stock": 120,
   "category": "Electronics"
 });'''
