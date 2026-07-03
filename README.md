@@ -31,17 +31,42 @@ db.createCollection("products", {
 ## Use embedded documents or references where appropriate.
 ### Write the following MongoDB queries:
 #### Insert a new user
+''' db.users.insertOne({
+  "name": "Jane Doe",
+  "email": "jane.doe@email.com",
+  "shippingAddress": { "street": "456 Oak St", "city": "Boston", "zip": "02108" },
+  "createdAt": new Date()
+}); '''
 
 Insert a new product
-
+''' db.products.insertOne({
+  "name": "Wireless Mouse",
+  "description": "Ergonomic 2.4GHz wireless mouse",
+  "price": 29.99,
+  "stock": 120,
+  "category": "Electronics"
+});'''
 
 Create a new order
-
+''' db.orders.insertOne({
+  "userId": ObjectId("60c72b2f9b1d8b2bad000001"),
+  "orderDate": new Date(),
+  "items": [
+    {
+      "productId": ObjectId("60c72b2f9b1d8b2bad000002"),
+      "name": "Mechanical Keyboard",
+      "price": 89.99,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 89.99,
+  "status": "Pending"
+}); '''
 
 Find all orders for a user
-''' db.users.find()'''
-''' db.products.find()'''
-''' db.orders.find()'''
+''' db.users.find() '''
+''' db.products.find() '''
+''' db.orders.find() '''
 
 Update product stock
 <img width="1078" height="426" alt="Screenshot 2026-07-03 at 4 54 18 PM" src="https://github.com/user-attachments/assets/15a3cc5f-d4b3-43c3-ba0f-a2c55965eecf" />
@@ -51,7 +76,7 @@ Delete an order
 ##Write one aggregation query to calculate:
 Total amount spent by each user or
 Total sales per product
-```
+'''
 db.orders.aggregate([
   {
     "$group": {
@@ -81,5 +106,5 @@ db.orders.aggregate([
       "orderCount": 1
     }
   }
-]);
+]);'''
 
