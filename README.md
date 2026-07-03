@@ -5,6 +5,8 @@
 ## Design collections for: {USE inventory-DB}
 - Users
 <img width="871" height="749" alt="Screenshot 2026-07-03 at 4 49 42 PM" src="https://github.com/user-attachments/assets/48a92196-53b5-4797-9cd9-dca4d0746205" />
+<img width="1165" height="530" alt="Screenshot 2026-07-03 at 5 03 55 PM" src="https://github.com/user-attachments/assets/3e93767f-c69b-4082-af30-c98b3d10fa46" />
+
 
 - Products
 db.createCollection("products", {
